@@ -17,11 +17,15 @@
 - filter_by_currency(transactions, currency_code): итератор, поочередно выдающий транзакции с указанной валютой (по умолчанию 'USD').
 - transaction_descriptions(transactions): итератор, поочередно выдающий текстовое описание каждой операции.
 - card_number_generator(start, stop): генератор номеров банковских карт в формате XXXX XXXX XXXX XXXX в заданном диапазоне.
+### Модуль src/decorators.py
+- Принимает необязательный аргумент filename: Optional[str] = None.
+- При успешном выполнении записывает: <имя_функции> ok.
+- При ошибке записывает: <имя_функции> error: <тип_ошибки>. Inputs: <args>, <kwargs> и повторно вызывает исключение (raise).
+- Направляет вывод в файл (при указании filename) или в консоль (если filename не задан).
 
 ## Тестирование
-Для запуска всех тестов используется команда:
-`pytest`
-В проекте реализовано 51 тест, которые проверяют работу функций модулей `masks`, `widget`, `processing`, `generators`.
+Реализованы unit-тесты с использованием: `pytest`, `capsys`, `tmp_path`.
+В проекте реализовано 56 тест, которые проверяют работу функций модулей `masks`, `widget`, `processing`, `generators`, `decorators`.
 `pytest --cov=src`
 Текущее покрытие кода составляет 100%.
 Также проект проверяется с помощью линтеров и форматеров:
@@ -41,7 +45,10 @@ pip install -r requirements.txt
 ```
 
 ## Примеры использования
-```from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+
+### Работа с базовыми модулями проекта
+```
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 from src.widget import mask_account_card, get_date
 from src.processing import filter_by_state, sort_by_date
 
@@ -106,25 +113,54 @@ transactions = [
 "from": "Visa Platinum 1246377376343588",
 "to": "Счет 14211924144426031657"
 }
-]```
+]
+```
 
-### 1. Фильтрация по валюте USD
-```usd_transactions = filter_by_currency(transactions, "USD")
+#### 1. Фильтрация по валюте USD
+```
+usd_transactions = filter_by_currency(transactions, "USD")
 print(next(usd_transactions)["id"])  # 939719570
 ```
 
-### 2. Перебор описаний операций по очереди
-```descriptions = transaction_descriptions(transactions)
+#### 2. Перебор описаний операций по очереди
+```
+descriptions = transaction_descriptions(transactions)
 for desc in descriptions:
 print(desc)
 ```
 
-### 3. Генерация заформатированных номеров карт
-```for card_num in card_number_generator(1, 3):
+#### 3. Генерация заформатированных номеров карт
+```
+for card_num in card_number_generator(1, 3):
 print(card_num)
 
 Вывод:
 0000 0000 0000 0001
 0000 0000 0000 0002
 0000 0000 0000 0003
+```
+
+### Логирование в файл
+```
+from src.decorators import log
+
+
+# Логирование в файл
+@log(filename="mylog.txt")
+def my_function(x: int, y: int) -> int:
+    return x + y
+
+
+my_function(1, 2)
+# В mylog.txt запишется: my_function ok
+
+
+# Логирование в консоль с ошибкой
+@log()
+def divide(x: int, y: int) -> float:
+    return x / y
+
+
+divide(1, 0)
+# В консоль выведется: divide error: ZeroDivisionError. Inputs: (1, 0), {}
 ```
