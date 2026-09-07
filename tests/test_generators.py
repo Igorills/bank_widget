@@ -54,6 +54,7 @@ def sample_transactions() -> List[Dict[str, Any]]:
 
 # Тестирование filter_by_currency
 
+
 @pytest.mark.parametrize(
     "currency_code, expected_count",
     [
@@ -91,6 +92,7 @@ def test_filter_by_currency_invalid_structure() -> None:
 
 # Тестирование transaction_descriptions
 
+
 def test_transaction_descriptions_correct(sample_transactions: List[Dict[str, Any]]) -> None:
     """Проверка выдачи корректных описаний операций."""
     descriptions = list(transaction_descriptions(sample_transactions))
@@ -119,6 +121,7 @@ def test_transaction_descriptions_missing_key() -> None:
 
 
 # Тестирование card_number_generator
+
 
 @pytest.mark.parametrize(
     "start, stop, expected",
