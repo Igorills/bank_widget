@@ -1,0 +1,51 @@
+import json
+from unittest.mock import mock_open, patch
+
+from src.utils import load_transactions
+
+
+def test_load_transactions_valid_json() -> None:
+    """Проверка успешной загрузки валидного списка транзакций из JSON."""
+    mock_data = [{"id": 1, "amount": "100"}, {"id": 2, "amount": "200"}]
+    mock_json = json.dumps(mock_data)
+
+    with patch("os.path.exists", return_value=True):
+        with patch("builtins.open", mock_open(read_data=mock_json)):
+            result = load_transactions("data/operations.json")
+            assert result == mock_data
+
+
+def test_load_transactions_file_not_found() -> None:
+    """Проверка возврата пустого списка, если файл не существует."""
+    with patch("os.path.exists", return_value=False):
+        result = load_transactions("data/non_existing.json")
+        assert result == []
+
+
+def test_load_transactions_invalid_json() -> None:
+    """Проверка возврата пустого списка при поврежденном JSON-файле."""
+    invalid_json = "{ invalid json content "
+
+    with patch("os.path.exists", return_value=True):
+        with patch("builtins.open", mock_open(read_data=invalid_json)):
+            result = load_transactions("data/corrupted.json")
+            assert result == []
+
+
+def test_load_transactions_not_a_list() -> None:
+    """Проверка возврата пустого списка, если JSON содержит словарь вместо списка."""
+    mock_dict = {"id": 1, "amount": "100"}
+    mock_json = json.dumps(mock_dict)
+
+    with patch("os.path.exists", return_value=True):
+        with patch("builtins.open", mock_open(read_data=mock_json)):
+            result = load_transactions("data/dict_operations.json")
+            assert result == []
+
+
+def test_load_transactions_empty_file() -> None:
+    """Проверка возврата пустого списка при пустом файле."""
+    with patch("os.path.exists", return_value=True):
+        with patch("builtins.open", mock_open(read_data="")):
+            result = load_transactions("data/empty.json")
+            assert result == []
