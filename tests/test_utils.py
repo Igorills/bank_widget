@@ -1,7 +1,8 @@
 import json
+import os
 from unittest.mock import mock_open, patch
 
-from src.utils import load_transactions
+from src.utils import LOG_FILE_PATH, load_transactions
 
 
 def test_load_transactions_valid_json() -> None:
@@ -49,3 +50,34 @@ def test_load_transactions_empty_file() -> None:
         with patch("builtins.open", mock_open(read_data="")):
             result = load_transactions("data/empty.json")
             assert result == []
+
+
+# Тесты для проверки логирования (logging)
+
+
+def test_load_transactions_logging_success() -> None:
+    """Проверяет создание файла логов и записи успешной загрузки (INFO)."""
+    mock_data = [{"id": 1, "amount": "100"}]
+    mock_json = json.dumps(mock_data)
+
+    with patch("os.path.exists", return_value=True):
+        with patch("builtins.open", mock_open(read_data=mock_json)):
+            load_transactions("data/operations.json")
+
+    assert os.path.exists(LOG_FILE_PATH)
+    with open(LOG_FILE_PATH, "r", encoding="utf-8") as f:
+        log_content = f.read()
+        assert "utils" in log_content
+        assert "INFO" in log_content
+        assert "Успешно загружено 1 транзакций" in log_content
+
+
+def test_load_transactions_logging_error_not_found() -> None:
+    """Проверяет запись ошибки уровня ERROR при отсутствии файла."""
+    with patch("os.path.exists", return_value=False):
+        load_transactions("data/missing.json")
+
+    with open(LOG_FILE_PATH, "r", encoding="utf-8") as f:
+        log_content = f.read()
+        assert "ERROR" in log_content
+        assert "Файл не найден по пути" in log_content
