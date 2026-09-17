@@ -218,3 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Игнорировать файлы данных
+data/transactions.csv
+data/transactions_excel.xlsx
