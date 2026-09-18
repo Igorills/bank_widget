@@ -60,12 +60,12 @@
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
         <p class="text">
-            <a id="prevFileLink" class="nav" href="z_145eef247bfb46b6_generators_py.html">&#xab; prev</a> &nbsp; &nbsp;
+            <a id="prevFileLink" class="nav" href="z_145eef247bfb46b6_main_py.html">&#xab; prev</a> &nbsp; &nbsp;
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="z_145eef247bfb46b6_processing_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-09-15 15:41 +0700
+            created at 2026-09-18 20:35 +0700
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -88,7 +88,7 @@
     <p class="run"><span class="n"><a id="t6" href="#t6">6</a></span><span class="t"><span class="nam">os</span><span class="op">.</span><span class="nam">makedirs</span><span class="op">(</span><span class="nam">LOGS_DIR</span><span class="op">,</span> <span class="nam">exist_ok</span><span class="op">=</span><span class="key">True</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t7" href="#t7">7</a></span><span class="t"><span class="nam">LOG_FILE_PATH</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">path</span><span class="op">.</span><span class="nam">join</span><span class="op">(</span><span class="nam">LOGS_DIR</span><span class="op">,</span> <span class="str">&quot;masks.log&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t8" href="#t8">8</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t9" href="#t9">9</a></span><span class="t"><span class="com"># 2. &#1057;&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1086;&#1090;&#1076;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1086;&#1073;&#1098;&#1077;&#1082;&#1090;&#1072; &#1083;&#1086;&#1075;&#1077;&#1088;&#1072;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t9" href="#t9">9</a></span><span class="t"><span class="com"># 2. &#1057;&#1086;&#1079;&#1076;&#1072;&#1085;&#1080;&#1077; &#1086;&#1090;&#1076;&#1077;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1086;&#1073;&#1098;&#1077;&#1082;&#1090;&#1072; &#1083;&#1086;&#1075;&#1075;&#1077;&#1088;&#1072;</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t10" href="#t10">10</a></span><span class="t"><span class="nam">logger</span> <span class="op">=</span> <span class="nam">logging</span><span class="op">.</span><span class="nam">getLogger</span><span class="op">(</span><span class="str">&quot;masks&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t11" href="#t11">11</a></span><span class="t"><span class="nam">logger</span><span class="op">.</span><span class="nam">setLevel</span><span class="op">(</span><span class="nam">logging</span><span class="op">.</span><span class="nam">DEBUG</span><span class="op">)</span>  <span class="com"># &#1059;&#1088;&#1086;&#1074;&#1077;&#1085;&#1100; &#1085;&#1077; &#1084;&#1077;&#1085;&#1100;&#1096;&#1077;, &#1095;&#1077;&#1084; DEBUG</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -99,7 +99,7 @@
     <p class="pln"><span class="n"><a id="t17" href="#t17">17</a></span><span class="t"><span class="com"># 4. &#1053;&#1072;&#1089;&#1090;&#1088;&#1086;&#1081;&#1082;&#1072; file_formatter: &#1084;&#1077;&#1090;&#1082;&#1072; &#1074;&#1088;&#1077;&#1084;&#1077;&#1085;&#1080;, &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1077; &#1084;&#1086;&#1076;&#1091;&#1083;&#1103;, &#1091;&#1088;&#1086;&#1074;&#1077;&#1085;&#1100;, &#1089;&#1086;&#1086;&#1073;&#1097;&#1077;&#1085;&#1080;&#1077;</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t18" href="#t18">18</a></span><span class="t"><span class="nam">file_formatter</span> <span class="op">=</span> <span class="nam">logging</span><span class="op">.</span><span class="nam">Formatter</span><span class="op">(</span><span class="str">&quot;%(asctime)s - %(name)s - %(levelname)s - %(message)s&quot;</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t19" href="#t19">19</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="com"># 5. &#1059;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1082;&#1072; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090;&#1077;&#1088;&#1072; &#1080; &#1076;&#1086;&#1073;&#1072;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077; &#1093;&#1077;&#1085;&#1076;&#1083;&#1077;&#1088;&#1072; &#1074; &#1083;&#1086;&#1075;&#1077;&#1088;</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t20" href="#t20">20</a></span><span class="t"><span class="com"># 5. &#1059;&#1089;&#1090;&#1072;&#1085;&#1086;&#1074;&#1082;&#1072; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090;&#1077;&#1088;&#1072; &#1080; &#1076;&#1086;&#1073;&#1072;&#1074;&#1083;&#1077;&#1085;&#1080;&#1077; &#1093;&#1077;&#1085;&#1076;&#1083;&#1077;&#1088;&#1072; &#1074; &#1083;&#1086;&#1075;&#1075;&#1077;&#1088;</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t21" href="#t21">21</a></span><span class="t"><span class="nam">file_handler</span><span class="op">.</span><span class="nam">setFormatter</span><span class="op">(</span><span class="nam">file_formatter</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t22" href="#t22">22</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t23" href="#t23">23</a></span><span class="t"><span class="com"># &#1048;&#1079;&#1073;&#1077;&#1075;&#1072;&#1077;&#1084; &#1076;&#1091;&#1073;&#1083;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1093;&#1077;&#1085;&#1076;&#1083;&#1077;&#1088;&#1086;&#1074; &#1087;&#1088;&#1080; &#1087;&#1086;&#1074;&#1090;&#1086;&#1088;&#1085;&#1099;&#1093; &#1080;&#1084;&#1087;&#1086;&#1088;&#1090;&#1072;&#1093;</span>&nbsp;</span><span class="r"></span></p>
@@ -137,12 +137,12 @@
 <footer>
     <div class="content">
         <p>
-            <a class="nav" href="z_145eef247bfb46b6_generators_py.html">&#xab; prev</a> &nbsp; &nbsp;
+            <a class="nav" href="z_145eef247bfb46b6_main_py.html">&#xab; prev</a> &nbsp; &nbsp;
             <a class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a class="nav" href="z_145eef247bfb46b6_processing_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.4">coverage.py v7.15.4</a>,
-            created at 2026-09-15 15:41 +0700
+            created at 2026-09-18 20:35 +0700
         </p>
     </div>
 </footer>
