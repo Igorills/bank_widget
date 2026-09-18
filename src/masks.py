@@ -6,7 +6,7 @@ LOGS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs")
 os.makedirs(LOGS_DIR, exist_ok=True)
 LOG_FILE_PATH = os.path.join(LOGS_DIR, "masks.log")
 
-# 2. Создание отдельного объекта логера
+# 2. Создание отдельного объекта логгера
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)  # Уровень не меньше, чем DEBUG
 
@@ -17,7 +17,7 @@ file_handler.setLevel(logging.DEBUG)
 # 4. Настройка file_formatter: метка времени, название модуля, уровень, сообщение
 file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
-# 5. Установка форматера и добавление хендлера в логер
+# 5. Установка форматера и добавление хендлера в логгер
 file_handler.setFormatter(file_formatter)
 
 # Избегаем дублирования хендлеров при повторных импортах
